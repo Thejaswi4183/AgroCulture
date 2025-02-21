@@ -38,7 +38,6 @@ if($category == 1)
             $_SESSION['picExt'] = $User['picExt'];
             $_SESSION['logged_in'] = true;
             $_SESSION['Category'] = 1;
-            $_SESSION['Rating'] = 0;
 
             if($_SESSION['picStatus'] == 0)
             {
@@ -90,9 +89,19 @@ else
             $_SESSION['Addr'] = $User['baddress'];
             $_SESSION['Active'] = $User['bactive'];
             $_SESSION['logged_in'] = true;
-            $_SESSION['Category'] = 0;
+            $_SESSION['Category'] = 2;
 
             //echo $_SESSION['Email']."  ".$_SESSION['Name'];
+            if($_SESSION['picStatus'] == 0)
+            {
+                $_SESSION['picId'] = 0;
+                $_SESSION['picName'] = "profile0.png";
+            }
+            else
+            {
+                $_SESSION['picId'] = $_SESSION['id'];
+                $_SESSION['picName'] = "profile".$_SESSION['picId'].".".$_SESSION['picExt'];
+            }
 
             header("location: profile.php");
         }
