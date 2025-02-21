@@ -51,7 +51,7 @@ if($category == 1)
             }
             //echo $_SESSION['Email']."  ".$_SESSION['Name'];
 
-            header("location: profile.php");
+            header("location: ../profileView.php");
         }
         else
         {

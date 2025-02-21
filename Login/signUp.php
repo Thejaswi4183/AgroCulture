@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['Category'] = $category;
     $_SESSION['Hash'] = $hash;
     $_SESSION['Addr'] = $addr;
-    $_SESSION['Rating'] = 0;
 
 }
 

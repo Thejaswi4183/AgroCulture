@@ -15,8 +15,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
+				<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
@@ -32,22 +31,6 @@
 		?>
 
 
-
-	<!--	<div class="btn-group-lg btn-group-justified">
-			<div class="row">
-				<div class="4u$ 12u$(small)">
-    				<a href="#" class="button alt fit">Blogs & Poetry</a>
-				</div>
-				<div class="4u$ 12u$(small)">
-    				<a href="#" class="button alt fit">Photography</a>
-				</div>
-				<div class="4u$ 12u$(small)">
-					<a href="#" class="button alt fit">Paintings and Sketches</a>
-				</div>
-			</div>
-  		</div>
-
-		<br> -->
 
 	<form method="post" action="Blog/blogSubmit.php">
         <section id="main" class="wrapper">

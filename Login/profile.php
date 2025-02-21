@@ -1,98 +1,133 @@
 <?php
-    session_start();
+session_start();
 
-    if ( $_SESSION['logged_in'] != 1 )
-    {
-      $_SESSION['message'] = "You must log in before viewing your profile page!";
-      header("location: error.php");
-    }
-    else
-    {
-
-       $email =  $_SESSION['Email'];
-       $name =  $_SESSION['Name'];
-       $user =  $_SESSION['Username'];
-       $mobile = $_SESSION['Mobile'];
-       $active = $_SESSION['Active'];
-    }
+if ($_SESSION['logged_in'] != 1) {
+    $_SESSION['message'] = "You must log in before viewing your profile page!";
+    header("location: error.php");
+} else {
+    $active = $_SESSION['Active'];
+}
 ?>
 
-<!DOCTYPE html>
-    <html >
-     <head>
-        <title>AgroCulture</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="../bootstrap\css\bootstrap.min.css" rel="stylesheet">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="../bootstrap\js\bootstrap.min.js"></script>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="../js/jquery.min.js"></script>
-		<script src="../js/skel.min.js"></script>
-		<script src="../js/skel-layers.min.js"></script>
-		<script src="../js/init.js"></script>
-		<link rel="stylesheet" href="../css/skel.css" />
-		<link rel="stylesheet" href="../css/style.css" />
-		<link rel="stylesheet" href="../css/style-xlarge.css" />
-    </head>
+<!DOCTYPE HTML>
 
-    <body>
-        <?php
-            require 'menu.php';
-        ?>
+<html lang="en">
 
-        <section id="banner" class="wrapper">
-            <div class="container">
-                <header class="major">
-                    <h2>Welcome</h2>
-                </header>
-                <p>
-                <?php
-                    if ( isset($_SESSION['message']) )
-                    {
-                        echo $_SESSION['message'];
-                        unset( $_SESSION['message'] );
-                    }
-                ?>
-                </p>
+<head>
+    <title>Profile: <?php echo $_SESSION['Username']; ?></title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="../login.css" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/skel.min.js"></script>
+    <script src="../js/skel-layers.min.js"></script>
+    <script src="../js/init.js"></script>
+    <link rel="stylesheet" href="../css/skel.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/style-xlarge.css" />
 
-                <?php
-                    if ( !$active )
-                    {
-                        echo
-                        "<div>
+</head>
+
+<body>
+
+    <?php
+    require 'menu.php';
+    ?>
+
+    <section id="one" class="wrapper style1 align">
+        <div class="inner">
+            <div class="box">
+                <header>
+
+                    <center>
+
+                        <?php
+                        if (!$active) {
+                            ?>
+                            <h4 style="margin:5px;background: red;color: white;display: inline-block;padding: 5px 10px;"><?php echo
+                                "<div>
                             Account is not verified! Please confirm your email by clicking
-                            on the email link!
-                        </div>";
-                    }
-                ?>
-                  <h2><?php echo $name; ?></h2>
-                  <p><?= $email ?></p>
+                            on the link sent to your mail!
+                         </div>";
+                        }
+                        ?>
+                        </h4>
+                        <p></p>
+                            <span><img
+                                    src="<?php echo '../images/profileImages/' . $_SESSION['picName'] . '?' . mt_rand(); ?>"
+                                    class="image-circle" class="img-responsive" height="200%"></span>
+                            <br>
+                            <h2><?php echo $_SESSION['Name']; ?></h2>
+                            <h4 style="color: black;"><?php echo $_SESSION['Username']; ?></h4>
+                            <br>
+                            <div class="3u 12u$(large)">
+                                <a href="logout.php" class="btn btn-danger" style="text-decoration: none;">LOGOUT</a>
+                            </div>
+                    </center>
 
-                 <?php if($_SESSION['Category'] == 1): ?>
-                    <div class="row uniform">
-                        <div class="6u 12u$(xsmall)">
-                            <a href=../profileView.php class="button special">My Profile</a>
-                        </div>
-                        <div class="6u 12u$(xsmall)">
-                            <a href="logout.php" class="button special">LOG OUT</a>
-                        </div>
+                </header>
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                        <b>
+                            <font size="+1" color="black">Email ID : </font>
+                        </b>
+                        <font size="+1"><?php echo $_SESSION['Email']; ?></font>
                     </div>
-                <?php else: ?>
-                    <div class="row uniform">
-                        <div class="6u 12u$(xsmall)">
-                            <a href=../market.php class="button special">Digital Market</a>
-                        </div>
-                        <div class="6u 12u$(xsmall)">
-                            <a href="logout.php" class="button special">LOG OUT</a>
-                        </div>
+
+                    <div class="col-sm-3">
+                        <b>
+                            <font size="+1" color="black">Mobile No : </font>
+                        </b>
+                        <font size="+1"><?php echo $_SESSION['Mobile']; ?></font>
                     </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                        <b>
+                            <font size="+1" color="black">ADDRESS : </font>
+                        </b>
+                        <font size="+1"><?php echo $_SESSION['Addr']; ?></font>
+                    </div>
+                    <div class="col-sm-3"></div>
 
-                <?php endif; ?>
+                </div>
+
+                <div class="12u$">
+                    <centre>
+                        <div class="row uniform">
+
+                            <div class="col-sm-3"></div>
+                            <div class="3u 12u$(large)">
+                                <a href="profileEdit.php" class="btn btn-primary" style="text-decoration: none;">Edit
+                                    Profile</a>
+
+                            </div>
+                    </centre>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
 
-    </body>
+
+</body>
+
 </html>
