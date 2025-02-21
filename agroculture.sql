@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2018 at 07:52 AM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: Feb 21, 2025 at 06:43 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -31,16 +32,16 @@ CREATE TABLE `blogdata` (
   `blogUser` varchar(256) NOT NULL,
   `blogTitle` varchar(256) NOT NULL,
   `blogContent` longtext NOT NULL,
-  `blogTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `likes` int(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `blogTime` timestamp NOT NULL DEFAULT current_timestamp(),
+  `likes` int(10) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `blogdata`
 --
 
 INSERT INTO `blogdata` (`blogId`, `blogUser`, `blogTitle`, `blogContent`, `blogTime`, `likes`) VALUES
-(19, 'ThePhenom', 'First Blog', '<p>Its Awesome website<img alt="wink" src="https://cdn.ckeditor.com/4.8.0/full/plugins/smiley/images/wink_smile.png" style="height:23px; width:23px" title="wink" /></p>\r\n', '2018-02-25 13:09:41', 1);
+(20, 'Thejaswi', 'First Blog', '<p>Amazing Website</p>\r\n', '2025-02-21 16:53:15', 1);
 
 -- --------------------------------------------------------
 
@@ -53,15 +54,15 @@ CREATE TABLE `blogfeedback` (
   `comment` varchar(256) NOT NULL,
   `commentUser` varchar(256) NOT NULL,
   `commentPic` varchar(256) NOT NULL DEFAULT 'profile0.png',
-  `commentTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `commentTime` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `blogfeedback`
 --
 
 INSERT INTO `blogfeedback` (`blogId`, `comment`, `commentUser`, `commentPic`, `commentTime`) VALUES
-(19, 'Mast yarr', 'ThePhenom', 'profile0.png', '2018-02-25 13:09:54');
+(20, 'True', 'void', 'profile0.png', '2025-02-21 17:41:29');
 
 -- --------------------------------------------------------
 
@@ -78,8 +79,15 @@ CREATE TABLE `buyer` (
   `bemail` varchar(100) NOT NULL,
   `bmobile` varchar(100) NOT NULL,
   `baddress` text NOT NULL,
-  `bactive` int(100) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `bactive` int(100) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `buyer`
+--
+
+INSERT INTO `buyer` (`bid`, `bname`, `busername`, `bpassword`, `bhash`, `bemail`, `bmobile`, `baddress`, `bactive`) VALUES
+(4, 'Test', 'Test', '$2y$10$a71VLoloq7A73SO5I6w7JONjbBHTqOJNy8Qrg4QhyU.sut0WWDYpS', 'f3f27a324736617f20abbf2ffd806f6d', 'notvoid83@gmail.com', '1234567890', '123', 1);
 
 -- --------------------------------------------------------
 
@@ -96,18 +104,18 @@ CREATE TABLE `farmer` (
   `femail` varchar(255) NOT NULL,
   `fmobile` varchar(255) NOT NULL,
   `faddress` text NOT NULL,
-  `factive` int(255) NOT NULL DEFAULT '0',
-  `frating` int(11) NOT NULL DEFAULT '0',
+  `factive` int(255) NOT NULL DEFAULT 0,
   `picExt` varchar(255) NOT NULL DEFAULT 'png',
-  `picStatus` int(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `picStatus` int(10) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `farmer`
 --
 
-INSERT INTO `farmer` (`fid`, `fname`, `fusername`, `fpassword`, `fhash`, `femail`, `fmobile`, `faddress`, `factive`, `frating`, `picExt`, `picStatus`) VALUES
-(3, 'Kaivalya Hemant Mendki', 'ThePhenom', '$2y$10$22ezmzHRa9c5ycHmVm5RpOnlT4LwFaDZar1XhmLRJQKGrcVRhPgti', '61b4a64be663682e8cb037d9719ad8cd', 'kmendki98@gmail.com', '8600611198', 'abcde', 0, 0, 'png', 0);
+INSERT INTO `farmer` (`fid`, `fname`, `fusername`, `fpassword`, `fhash`, `femail`, `fmobile`, `faddress`, `factive`, `picExt`, `picStatus`) VALUES
+(1, 'Thejaswi', 'Thejaswi', '$2y$10$OOhW4EEy7TjtaonT.AzkreQMOzwER.lrcD.vrQhx2BqI0ctWFR/qu', '069d3bb002acd8d7dd095917f9efe4cb', 'thejaswi4uns@gmail.com', '9731859761', '111', 1, 'png', 0),
+(5, 'void', 'void', '$2y$10$LsUKvuUhxDhbC2yudEcQ2uapCdTuS8mNO48TFXygg4YWObsEGfJN.', 'bc6dc48b743dc5d013b1abaebd2faed2', 'notvoid83@gmail.com', '1234567890', '123', 1, 'png', 0);
 
 -- --------------------------------------------------------
 
@@ -123,18 +131,15 @@ CREATE TABLE `fproduct` (
   `pinfo` varchar(255) NOT NULL,
   `price` float NOT NULL,
   `pimage` varchar(255) NOT NULL DEFAULT 'blank.png',
-  `picStatus` int(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `picStatus` int(10) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `fproduct`
 --
 
 INSERT INTO `fproduct` (`fid`, `pid`, `product`, `pcat`, `pinfo`, `price`, `pimage`, `picStatus`) VALUES
-(3, 27, 'Mango', 'Fruit', '<p>Mango raseela</p>\r\n', 500, 'Mango3.jpeg', 1),
-(3, 28, 'Ladyfinger', 'Vegetable', '<p>Its veggie</p>\r\n', 1000, 'Ladyfinger3.jpg', 1),
-(3, 29, 'Bajra', 'Grains', '<p>bajre di rti</p>\r\n', 400, 'Bajra3.jpg', 1),
-(3, 30, 'Banana', 'Fruit', '<p>Jalgaon banana</p>\r\n', 400, 'Banana3.jpg', 1);
+(1, 31, 'Apple', 'Fruit', '<p>Fresh Apple</p>\r\n', 200, 'Apple4.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -145,14 +150,14 @@ INSERT INTO `fproduct` (`fid`, `pid`, `product`, `pcat`, `pinfo`, `price`, `pima
 CREATE TABLE `likedata` (
   `blogId` int(10) NOT NULL,
   `blogUserId` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `likedata`
 --
 
 INSERT INTO `likedata` (`blogId`, `blogUserId`) VALUES
-(19, 3);
+(20, 1);
 
 -- --------------------------------------------------------
 
@@ -163,15 +168,7 @@ INSERT INTO `likedata` (`blogId`, `blogUserId`) VALUES
 CREATE TABLE `mycart` (
   `bid` int(10) NOT NULL,
   `pid` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mycart`
---
-
-INSERT INTO `mycart` (`bid`, `pid`) VALUES
-(3, 27),
-(3, 30);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -184,7 +181,14 @@ CREATE TABLE `review` (
   `name` varchar(255) NOT NULL,
   `rating` int(10) NOT NULL,
   `comment` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`pid`, `name`, `rating`, `comment`) VALUES
+(31, 'void', 10, 'Good');
 
 -- --------------------------------------------------------
 
@@ -202,14 +206,7 @@ CREATE TABLE `transaction` (
   `email` varchar(255) NOT NULL,
   `pincode` varchar(255) NOT NULL,
   `addr` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `transaction`
---
-
-INSERT INTO `transaction` (`tid`, `bid`, `pid`, `name`, `city`, `mobile`, `email`, `pincode`, `addr`) VALUES
-(1, 3, 28, 'sa,j,cns', 'sajc', 'sajch', 'kmendki98@gmail.com', 'sacu', 'ckaskjc');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Indexes for dumped tables
@@ -262,42 +259,42 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT for table `blogdata`
 --
 ALTER TABLE `blogdata`
-  MODIFY `blogId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `blogId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `buyer`
 --
 ALTER TABLE `buyer`
-  MODIFY `bid` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `bid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `farmer`
 --
 ALTER TABLE `farmer`
-  MODIFY `fid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `fid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `fproduct`
 --
 ALTER TABLE `fproduct`
-  MODIFY `pid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `pid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
   MODIFY `tid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `buyer`
---
-ALTER TABLE `buyer`
-  ADD CONSTRAINT `buyer_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `farmer` (`fid`);
 
 --
 -- Constraints for table `likedata`
 --
 ALTER TABLE `likedata`
   ADD CONSTRAINT `likedata_ibfk_1` FOREIGN KEY (`blogId`) REFERENCES `blogdata` (`blogId`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
