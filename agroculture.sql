@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2025 at 06:43 PM
+-- Generation Time: Feb 21, 2025 at 11:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,7 @@ CREATE TABLE `blogdata` (
 --
 
 INSERT INTO `blogdata` (`blogId`, `blogUser`, `blogTitle`, `blogContent`, `blogTime`, `likes`) VALUES
-(20, 'Thejaswi', 'First Blog', '<p>Amazing Website</p>\r\n', '2025-02-21 16:53:15', 1);
+(20, 'Thejaswi', 'First Blog', '<p>Amazing Website</p>\r\n', '2025-02-21 16:53:15', 2);
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE `blogfeedback` (
 --
 
 INSERT INTO `blogfeedback` (`blogId`, `comment`, `commentUser`, `commentPic`, `commentTime`) VALUES
-(20, 'True', 'void', 'profile0.png', '2025-02-21 17:41:29');
+(20, 'True', 'Geralt', 'profile0.png', '2025-02-21 20:33:33');
 
 -- --------------------------------------------------------
 
@@ -79,15 +79,17 @@ CREATE TABLE `buyer` (
   `bemail` varchar(100) NOT NULL,
   `bmobile` varchar(100) NOT NULL,
   `baddress` text NOT NULL,
-  `bactive` int(100) NOT NULL DEFAULT 0
+  `bactive` int(100) NOT NULL DEFAULT 0,
+  `picExt` varchar(255) NOT NULL DEFAULT 'png',
+  `picStatus` int(10) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `buyer`
 --
 
-INSERT INTO `buyer` (`bid`, `bname`, `busername`, `bpassword`, `bhash`, `bemail`, `bmobile`, `baddress`, `bactive`) VALUES
-(4, 'Test', 'Test', '$2y$10$a71VLoloq7A73SO5I6w7JONjbBHTqOJNy8Qrg4QhyU.sut0WWDYpS', 'f3f27a324736617f20abbf2ffd806f6d', 'notvoid83@gmail.com', '1234567890', '123', 1);
+INSERT INTO `buyer` (`bid`, `bname`, `busername`, `bpassword`, `bhash`, `bemail`, `bmobile`, `baddress`, `bactive`, `picExt`, `picStatus`) VALUES
+(5, 'Test', 'Test', '$2y$10$8vnkAgW0bmNbNKZLebmIhO2XxXAovj2BzL1EfAVAxwxP3DtcDAXbK', '430c3626b879b4005d41b8a46172e0c0', 'notvoid83@gmail.com', '1234567890', '123', 1, 'png', 0);
 
 -- --------------------------------------------------------
 
@@ -115,7 +117,8 @@ CREATE TABLE `farmer` (
 
 INSERT INTO `farmer` (`fid`, `fname`, `fusername`, `fpassword`, `fhash`, `femail`, `fmobile`, `faddress`, `factive`, `picExt`, `picStatus`) VALUES
 (1, 'Thejaswi', 'Thejaswi', '$2y$10$OOhW4EEy7TjtaonT.AzkreQMOzwER.lrcD.vrQhx2BqI0ctWFR/qu', '069d3bb002acd8d7dd095917f9efe4cb', 'thejaswi4uns@gmail.com', '9731859761', '111', 1, 'png', 0),
-(5, 'void', 'void', '$2y$10$LsUKvuUhxDhbC2yudEcQ2uapCdTuS8mNO48TFXygg4YWObsEGfJN.', 'bc6dc48b743dc5d013b1abaebd2faed2', 'notvoid83@gmail.com', '1234567890', '123', 1, 'png', 0);
+(5, 'void', 'void', '$2y$10$LsUKvuUhxDhbC2yudEcQ2uapCdTuS8mNO48TFXygg4YWObsEGfJN.', 'bc6dc48b743dc5d013b1abaebd2faed2', 'notvoid83@gmail.com', '1234567890', '123', 1, 'png', 0),
+(6, 'Geralt', 'Geralt', '$2y$10$a/6as/osodojJfoQaHFy3OL03lzNXq4DBwhu1JLt4I3PEiCYCp.je', 'a1d0c6e83f027327d8461063f4ac58a6', 'testmail@gmail.com', '1234567890', '123', 1, 'png', 0);
 
 -- --------------------------------------------------------
 
@@ -139,7 +142,11 @@ CREATE TABLE `fproduct` (
 --
 
 INSERT INTO `fproduct` (`fid`, `pid`, `product`, `pcat`, `pinfo`, `price`, `pimage`, `picStatus`) VALUES
-(1, 31, 'Apple', 'Fruit', '<p>Fresh Apple</p>\r\n', 200, 'Apple4.jpg', 1);
+(1, 31, 'Apple', 'Fruit', '<p>Fresh Apple</p>\r\n', 200, 'Apple.jpg', 1),
+(1, 32, 'Banana', 'Fruit', '<p>Banana</p>\r\n', 50, 'Banana1.jpg', 1),
+(1, 33, 'Okra', 'Vegetable', '<p>Fun Fact: In India is popular by the name &quot;Lady&#39;s Finger.&quot;</p>\r\n', 60, 'Okra1.jpg', 1),
+(1, 35, 'Rice', 'Grains', '<p>Rice</p>\r\n', 60, 'Rice1.jpg', 1),
+(6, 37, 'Mango', 'Fruit', '<p>Mango</p>\r\n', 60, 'Mango6.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -157,7 +164,8 @@ CREATE TABLE `likedata` (
 --
 
 INSERT INTO `likedata` (`blogId`, `blogUserId`) VALUES
-(20, 1);
+(20, 1),
+(20, 6);
 
 -- --------------------------------------------------------
 
@@ -169,6 +177,14 @@ CREATE TABLE `mycart` (
   `bid` int(10) NOT NULL,
   `pid` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `mycart`
+--
+
+INSERT INTO `mycart` (`bid`, `pid`) VALUES
+(5, 31),
+(6, 31);
 
 -- --------------------------------------------------------
 
@@ -188,7 +204,8 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`pid`, `name`, `rating`, `comment`) VALUES
-(31, 'void', 10, 'Good');
+(31, 'void', 10, 'Good'),
+(31, 'Test', 9, 'Good Product');
 
 -- --------------------------------------------------------
 
@@ -207,6 +224,13 @@ CREATE TABLE `transaction` (
   `pincode` varchar(255) NOT NULL,
   `addr` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`tid`, `bid`, `pid`, `name`, `city`, `mobile`, `email`, `pincode`, `addr`) VALUES
+(2, 5, 31, 'void', 'Bangalore', '01234567890', 'notvoid83@gmail.com', '560061', '123');
 
 --
 -- Indexes for dumped tables
@@ -265,25 +289,25 @@ ALTER TABLE `blogdata`
 -- AUTO_INCREMENT for table `buyer`
 --
 ALTER TABLE `buyer`
-  MODIFY `bid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `bid` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `farmer`
 --
 ALTER TABLE `farmer`
-  MODIFY `fid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `fid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fproduct`
 --
 ALTER TABLE `fproduct`
-  MODIFY `pid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `pid` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `tid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `tid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
