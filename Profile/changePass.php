@@ -1,67 +1,62 @@
 <?php
-    session_start();
+session_start();
+require '../db.php';
 
-    require '../db.php';
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the form data
+    $currentPassword = dataFilter($_POST['current_password']);
+    $newPassword = dataFilter($_POST['new_password']);
+    $confirmPassword = dataFilter($_POST['confirm_password']);
+    $userId = $_SESSION['id']; // Assuming the user is logged in and their ID is stored in session
 
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
-        $id = $_SESSION['id'];
-        $currPass = $_POST['currPass'];
-        $newPass = $_POST['newPass'];
-        $conNewPass = $_POST['conNewPass'];
-        $newHash = dataFilter( md5( rand(0,1000) ) );
-    }
-
-    $sql = "SELECT * FROM farmer WHERE fid='$id'";
+    // Fetch user data from the database
+    $sql = "SELECT * FROM farmer WHERE fid='$userId'";
     $result = mysqli_query($conn, $sql);
-    $num_rows = mysqli_num_rows($result);
-
-
-    if($num_rows == 0)
-    {
-        $_SESSION['message'] = "Invalid User Credentials!";
-        header("..Login/error.php");
-    }
-    else
-    {
-        $User = $result->fetch_assoc();
-
-        if(password_verify($_POST['currPass'], $User['Password']))
-        {
-            if($newPass == $conNewPass)
-            {
-                $conNewPass = dataFilter(password_hash($_POST['conNewPass'], PASSWORD_BCRYPT));
-                $currHash = $_SESSION['Hash'];
-                $sql = "UPDATE farmer SET fpassword='$conNewPass', fhash='$newHash' WHERE fhash='$currHash';";
-
-                $result = mysqli_query($conn, $sql);
-
-                if($result)
-                {
-                    $_SESSION['message'] = "Password changed Successfully!";
-                    header("location: ../Login/success.php");
-                }
-                else
-                {
-                    $_SESSION['message'] = "Error occurred while changing password<br>Please try again!";
-                    header("location: ../Login/error.php");
-                }
-            }
-        }
-        else
-        {
-            $_SESSION['message'] = "Invalid current User Credentials!";
-            header("location: ../Login/error.php");
-        }
+    
+    if ($result->num_rows == 0) {
+        $_SESSION['message'] = "User not found!";
+        header("location: ../Login/error.php");
+        exit();
     }
 
-    function dataFilter($data)
-    {
-    	$data = trim($data);
-     	$data = stripslashes($data);
-    	$data = htmlspecialchars($data);
-      	return $data;
+    $user = $result->fetch_assoc();
+
+    // Verify current password
+    if (!password_verify($currentPassword, $user['fpassword'])) {
+        $_SESSION['message'] = "Current password is incorrect!";
+        header("location: ../Login/error.php");
+        exit();
     }
 
+    // Check if new password and confirm password match
+    if ($newPassword !== $confirmPassword) {
+        $_SESSION['message'] = "New password and confirm password do not match!";
+        header("location: ../Login/error.php");
+        exit();
+    }
+
+    // Hash the new password
+    $newPasswordHash = password_hash($newPassword, PASSWORD_BCRYPT);
+
+    // Update the password in the database
+    $updateSql = "UPDATE farmer SET fpassword='$newPasswordHash' WHERE fid='$userId'";
+
+    if (mysqli_query($conn, $updateSql)) {
+        $_SESSION['message'] = "Password changed successfully!";
+        header("location: ../Login/success.php");
+    } else {
+        $_SESSION['message'] = "Error occurred while changing password. Please try again!";
+        header("location: ../Login/error.php");
+    }
+}
+
+// Function to sanitize user input
+function dataFilter($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>
