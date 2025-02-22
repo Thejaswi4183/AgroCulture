@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="../css/skel.css" />
 		<link rel="stylesheet" href="../css/style.css" />
 		<link rel="stylesheet" href="../css/style-xlarge.css" />
+		<link rel="stylesheet" type="text/css" href="../indexFooter.css">
     </head>
 
 	<body>
@@ -54,4 +55,5 @@
             <script src="../assets/js/util.js"></script>
             <script src="../assets/js/main.js"></script>
 	</body>
+	<?php require '../footer.php'; ?>	
 </html>

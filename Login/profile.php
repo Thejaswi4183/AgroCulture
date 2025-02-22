@@ -31,7 +31,7 @@ if ($_SESSION['logged_in'] != 1) {
     <link rel="stylesheet" href="../css/skel.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/style-xlarge.css" />
-
+    <link rel="stylesheet" type="text/css" href="../indexFooter.css">
 </head>
 
 <body>
@@ -117,7 +117,7 @@ if ($_SESSION['logged_in'] != 1) {
         </div>
         </div>
     </section>
-
+    <?php require '../footer.php'; ?>	
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>

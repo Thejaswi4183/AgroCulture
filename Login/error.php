@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="../css/skel.css" />
 		<link rel="stylesheet" href="../css/style.css" />
 		<link rel="stylesheet" href="../css/style-xlarge.css" />
+        <link rel="stylesheet" type="text/css" href="../indexFooter.css">
     </head>
 
     <body>
@@ -52,5 +53,6 @@
         </section>
 
     	<?php $_SESSION['message'] = ""; ?>
+        <?php require '../footer.php'; ?>	
     </body>
 </html>

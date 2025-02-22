@@ -110,6 +110,6 @@
 					</div>
 
 			</section>
-
+			<?php require 'footer.php'; ?>	
 	</body>
 </html>

@@ -106,16 +106,16 @@ if ($_SESSION['logged_in'] != 1) {
                             
                             <div class="col-sm-3"></div>
                             <div class="3u 12u$(large)">
-                                <a href="profileEdit.php" class="btn btn-danger" style="text-decoration: none;">Edit
+                                <a href="profileEdit.php" class="btn btn-primary"  style="text-decoration: none;">Edit
                                     Profile</a>
                             </div>
                             <div class="3u 12u$(xsmall)">
-                                <a href="uploadProduct.php" class="btn btn-danger" style="text-decoration: none;">Upload
+                                <a href="uploadProduct.php" class="btn btn-primary" style="text-decoration: none;">Upload
                                     Product</a>
                             </div>
                             <div class="3u 12u$(xsmall)">
-                                <a href="manageProducts.php" class="btn btn-danger" style="text-decoration: none;">Manage
-                                    Products</a>
+                                <a href="manageProducts.php" class="btn btn-primary" style="text-decoration: none;">Manage
+                                    Products</a>    
                             </div>
                             
                         </div>
@@ -125,6 +125,7 @@ if ($_SESSION['logged_in'] != 1) {
         </div>
         </div>
     </section>
+    <?php require 'footer.php'; ?>	
 
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
