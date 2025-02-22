@@ -107,7 +107,6 @@
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
 		<script src="https://cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
 	<body>
 

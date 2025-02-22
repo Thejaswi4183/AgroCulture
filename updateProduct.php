@@ -107,7 +107,7 @@ function dataFilter($data)
     <link rel="stylesheet" href="/css/skel.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/style-xlarge.css">
-    <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>
 
 </head>
 
