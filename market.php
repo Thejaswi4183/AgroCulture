@@ -43,7 +43,7 @@ if (!isset($_SESSION['logged_in']) or $_SESSION['logged_in'] == 0) {
 			<br /><br />
 			<div class="row 200%">
 				<section class="4u 12u$(small)">
-					<a href="profileView.php"><img src="profileDefault.png"></a>
+					<a href="Login/profile.php"><img src="profileDefault.png"></a>
 					<p>Your Profile</p>
 				</section>
 				<section class="4u 12u$(small)">
