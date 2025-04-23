@@ -28,7 +28,7 @@
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		
 		<link rel="stylesheet" href="login.css"/>
 		<script src="js/jquery.min.js"></script>
 		<script src="js/skel.min.js"></script>
@@ -39,7 +39,7 @@
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-xlarge.css" />
 		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+		
 	</head>
 	<body class>
 
